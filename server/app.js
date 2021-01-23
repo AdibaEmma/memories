@@ -3,6 +3,8 @@ import bodyParser from "body-parser";
 import mongoose from "mongoose";
 import cors from "cors";
 
+import postRoutes from "./routes/posts.js"
+
 const app = express();
 
 app.use(bodyParser.json({
@@ -16,7 +18,7 @@ app.use(bodyParser.urlencoded({
 app.use(cors());
 
 const CONNECTION_URL = "mongodb://localhost:27017/memories";
-const PORT = process.env.NODE_ENV = "production" ? process.env.PORT : 5000;
+const PORT = process.env.PORT || 5000;
 
 mongoose.connect(CONNECTION_URL, {
     useNewUrlParser: true,
@@ -31,3 +33,5 @@ mongoose.connect(CONNECTION_URL, {
 })
 
 mongoose.set("useFindAndModify", false)
+
+app.use("/posts", postRoutes)
