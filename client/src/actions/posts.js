@@ -1,5 +1,6 @@
 import * as api from "../api";
 
+// Action creator
 export const getPosts = () => async (dispatch) => {
 
     try {
